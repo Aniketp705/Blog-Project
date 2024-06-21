@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+  {% for posts in posts %}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ posts.author.profile.image.url }}" alt="">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="#">{{ posts.author }}</a>
+          <small class="text-muted">{{ posts.date_posted }}</small>
+        </div>
+        <h2><a class="article-title" href="{% url 'post-detail' posts.id %}">{{ posts.title }}</a></h2>
+        <p class="article-content">
+          {{ posts.content|truncatechars:200 }}  <a href="{% url 'post-detail' posts.id %}">Read More...</a>
+        </p>
+      </div>
+      <br>
+    </article>
+  {% endfor %}
+
+{% endblock content %}
